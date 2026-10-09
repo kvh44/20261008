@@ -6,6 +6,9 @@
 The default Spring profile is `local`. Set `LOCAL_DB_URL`, `LOCAL_DB_USERNAME`, and
 `LOCAL_DB_PASSWORD` to override the connection settings in `application-local.yaml`.
 The database must contain a `dockerclient` table with those four columns.
+The app starts when MySQL is unavailable; `/mysql-users` requires a working connection
+when requested. Hibernate's offline MySQL version defaults to 8.4 and can be overridden
+with `LOCAL_DB_MAJOR_VERSION` and `LOCAL_DB_MINOR_VERSION`.
 
 # Getting Started
 

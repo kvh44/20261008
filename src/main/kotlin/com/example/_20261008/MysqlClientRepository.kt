@@ -1,18 +1,5 @@
 package com.example._20261008
 
-import org.springframework.jdbc.core.JdbcTemplate
-import org.springframework.stereotype.Repository
+import org.springframework.data.jpa.repository.JpaRepository
 
-@Repository
-class MysqlClientRepository(private val jdbcTemplate: JdbcTemplate) {
-    fun findAll(): List<MysqlClient> = jdbcTemplate.query(
-        "SELECT id, username, email, telephone FROM dockerclient ORDER BY id",
-    ) { resultSet, _ ->
-        MysqlClient(
-            id = resultSet.getLong("id"),
-            username = resultSet.getString("username"),
-            email = resultSet.getString("email"),
-            telephone = resultSet.getString("telephone"),
-        )
-    }
-}
+interface MysqlClientRepository : JpaRepository<MysqlClient, Long>
