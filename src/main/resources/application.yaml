@@ -1,3 +1,9 @@
 spring:
   application:
     name: 20261008
+  docker:
+    compose:
+      enabled: false
+
+server:
+  port: 8002
