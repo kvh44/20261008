@@ -1,6 +1,8 @@
 spring:
   application:
     name: 20261008
+  profiles:
+    default: local
   docker:
     compose:
       enabled: false

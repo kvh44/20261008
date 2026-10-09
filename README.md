@@ -1,9 +1,11 @@
-# Read Me First
+# MySQL clients
 
-The following was discovered as part of building this project:
+`GET /mysql-users` reads the `dockerclient` table from MySQL and returns each client's
+`id`, `username`, `email`, and `telephone`.
 
-* No Docker Compose services found. As of now, the application won't start! Please add at least one service to the
-  `compose.yaml` file.
+The default Spring profile is `local`. Set `LOCAL_DB_URL`, `LOCAL_DB_USERNAME`, and
+`LOCAL_DB_PASSWORD` to override the connection settings in `application-local.yaml`.
+The database must contain a `dockerclient` table with those four columns.
 
 # Getting Started
 
@@ -28,11 +30,9 @@ These additional references should also help you:
 
 ### Docker Compose support
 
-This project contains a Docker Compose file named `compose.yaml`.
-
-However, no services were found. As of now, the application won't start!
-
-Please make sure to add at least one service in the `compose.yaml` file.
+The `compose.yaml` file has no services, and Spring Boot's Docker Compose integration
+is disabled in `application.yaml`. Provide a running MySQL database for
+`GET /mysql-users`.
 
 ## GraalVM Native Support
 
@@ -89,4 +89,3 @@ $ ./gradlew nativeTest
 There are some limitations regarding Native Build Tools and Gradle toolchains. Native Build Tools disable toolchain
 support by default. Effectively, native image compilation is done with the JDK used to execute Gradle. You can read more
 about [toolchain support in the Native Build Tools here](https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html#configuration-toolchains).
-
