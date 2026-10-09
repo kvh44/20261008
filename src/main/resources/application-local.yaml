@@ -9,3 +9,16 @@ spring:
     hikari:
       initialization-fail-timeout: -1
       connection-timeout: 3000
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        boot:
+          allow_jdbc_metadata_access: false
+      jakarta:
+        persistence:
+          database-product-name: MySQL
+          database-major-version: ${LOCAL_DB_MAJOR_VERSION:8}
+          database-minor-version: ${LOCAL_DB_MINOR_VERSION:4}

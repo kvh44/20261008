@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.servlet.NoHandlerFoundException
 import org.springframework.web.servlet.resource.NoResourceFoundException
+import java.net.ConnectException
 
 @RestControllerAdvice
-class NotFoundExceptionHandler {
+class ExceptionHandler {
     @ExceptionHandler(NoHandlerFoundException::class, NoResourceFoundException::class)
     fun handleNotFound(request: HttpServletRequest): ProblemDetail =
         ProblemDetail.forStatusAndDetail(
@@ -17,5 +18,14 @@ class NotFoundExceptionHandler {
             "No endpoint found for ${request.method} ${request.requestURI}",
         ).apply {
             title = "Page Not Found"
+        }
+
+    @ExceptionHandler(ConnectException::class)
+    fun handleConnectionError(request: HttpServletRequest): ProblemDetail =
+        ProblemDetail.forStatusAndDetail(
+            HttpStatus.SERVICE_UNAVAILABLE,
+            "Unable to connect to the database",
+        ).apply {
+            title = "Connection Unavailable"
         }
 }
